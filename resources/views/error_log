@@ -1,0 +1,30 @@
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 96
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Trying to get property 'warna1' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 96
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 97
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Trying to get property 'warna2' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 97
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 98
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Trying to get property 'warna3' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 98
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 99
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Trying to get property 'warna4' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 99
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 100
+[27-Apr-2024 22:55:26 UTC] PHP Notice:  Trying to get property 'warna5' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 100
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 96
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Trying to get property 'warna1' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 96
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 97
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Trying to get property 'warna2' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 97
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 98
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Trying to get property 'warna3' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 98
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 99
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Trying to get property 'warna4' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 99
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 100
+[28-Apr-2024 10:39:22 UTC] PHP Notice:  Trying to get property 'warna5' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 100
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 96
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Trying to get property 'warna1' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 96
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 97
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Trying to get property 'warna2' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 97
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 98
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Trying to get property 'warna3' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 98
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 99
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Trying to get property 'warna4' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 99
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Undefined variable: config in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 100
+[28-Apr-2024 21:45:41 UTC] PHP Notice:  Trying to get property 'warna5' of non-object in /home/jstoreg1/public_html/akumauweb/resources/views/main.blade.php on line 100

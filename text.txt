@@ -1,0 +1,50 @@
+ public function create(Kategori $kategori)
+    {
+        
+        
+       $data = Kategori::where('kode', $kategori->kode)->select('nama','sub_nama', 'server_id', 'thumbnail', 'id', 'kode', 'tipe', 'petunjuk', 'bannerlayanan', 'ket_layanan', 'ket_id', 'placeholder_1', 'placeholder_2')->first();
+        $getSubCategory = subCategories::where('category_id', $data->id)->where('active', 1)->get();
+
+        $normalSubCategory['id'] = 0;
+        $normalSubCategory['category_id'] = $data->id;
+        $normalSubCategory['code'] = "normal";
+        $normalSubCategory['name'] = "Top up";
+        $normalSubCategory['active'] = 1;
+        
+        $arraySubCategory = collect($getSubCategory)->toArray();
+
+        array_push($arraySubCategory, $normalSubCategory);     
+      
+        if($data == null) return back();
+        
+        if(Auth::check()){
+            if(Auth::user()->role == "Member"){
+                $layanan = Layanan::where('kategori_id', $data->id)->where('status', 'available')->select('id', 'sub_category_id', 'layanan','product_logo', 'harga_reseller AS harga', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->orderBy('harga', 'asc')->get();
+            }else if(Auth::user()->role == "Platinum" || Auth::user()->role == "Admin"){
+                $layanan = Layanan::where('kategori_id', $data->id)->where('status', 'available')->select('id', 'sub_category_id', 'layanan','product_logo', 'harga_platinum AS harga', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->orderBy('harga', 'asc')->get();
+            }else if(Auth::user()->role == "Gold"){
+                $layanan = Layanan::where('kategori_id', $data->id)->where('status', 'available')->select('id', 'sub_category_id', 'layanan','product_logo', 'harga_gold AS harga', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->orderBy('harga', 'asc')->get();
+            }
+        }else{
+              $layanan = Layanan::where('kategori_id', $data->id)->where('status', 'available')->select('id', 'sub_category_id', 'layanan', 'harga', 'product_logo', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->orderBy('harga', 'asc')->get();
+        }  
+        
+        $ratings = Rating::select('bintang', 'comment', 'id', 'created_at')
+            ->orderByDesc('id')
+            ->limit(7)
+            ->get();
+
+       
+        
+        return view('components.order', [
+            'title' => $data->nama,
+            'sub' => $arraySubCategory,
+            'kategori' => $data,
+            'nominal' => $layanan,
+            'harga' => $layanan,
+            'ratings' => $ratings,
+            'logoheader' => Berita::where('tipe', 'logoheader')->latest()->first(),
+            'logofooter' => Berita::where('tipe', 'logofooter')->latest()->first(),
+            'pay_method' => \App\Models\Method::all()
+        ]);
+    }
