@@ -40,7 +40,7 @@ class RegisterController extends Controller
         ]);
         
         
-         $no = $request->whatsapp;
+        $no = $request->whatsapp;
         
         if($no[0] == 0){
             

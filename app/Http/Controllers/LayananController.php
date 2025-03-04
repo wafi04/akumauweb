@@ -44,7 +44,6 @@ class LayananController extends Controller
             'harga' => 'required|numeric',
             'harga_reseller' => 'required|numeric',
             'harga_platinum' => 'required|numeric',
-            'harga_gold' => 'required|numeric',
             'profit' => 'required|numeric',
             'profit_reseller' => 'required|numeric',
             'profit_platinum' => 'required|numeric',
@@ -72,7 +71,6 @@ class LayananController extends Controller
         $layanan->harga = $request->harga + ($request->harga * $request->profit / 100);
         $layanan->harga_reseller = $request->harga_reseller + ($request->harga_reseller * $request->profit_reseller / 100);
         $layanan->harga_platinum = $request->harga_platinum + ($request->harga_platinum * $request->profit_platinum / 100);
-        $layanan->harga_gold = $request->harga_gold + ($request->harga_gold * $request->profit_gold / 100);
         $layanan->profit = $request->profit;
         $layanan->profit_reseller = $request->profit_reseller;
         $layanan->profit_platinum = $request->profit_platinum;
@@ -306,7 +304,6 @@ class LayananController extends Controller
             'harga' => $request->harga + ($request->harga * $request->profit / 100),
             'harga_reseller' => $request->harga_reseller + ($request->harga_reseller * $request->profit_reseller / 100),
             'harga_platinum' => $request->harga_platinum + ($request->harga_platinum * $request->profit_platinum / 100),
-            'harga_gold' => $request->harga_gold + ($request->harga_gold * $request->profit_gold / 100),
             'profit' => $request->profit,
             'profit_reseller' => $request->profit_reseller,
             'profit_platinum' => $request->profit_platinum,

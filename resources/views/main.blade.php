@@ -55,10 +55,10 @@
     <meta property="og:image:height" content="auto">
     <link rel="icon" href="{{ url('') }}{{ !$config ? '' : $config->logo_favicon }}">
     <title>{{ !$config ? '' : $config->judul_web }}</title>
-    <link href="{{ url('') }}/assetss/scss/app.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('') }}/assetss/scss/app.css">
+    <!-- <link href="{{ url('') }}/assetss/scss/app.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="{{ url('') }}/assetss/scss/app.css">
     <link rel="stylesheet" href="{{ url('') }}/assetss/css/app.css">
-    <link rel="stylesheet" href="{{ url('') }}/assetss/scss/chatbox.css">
+    <link rel="stylesheet" href="{{ url('') }}/assetss/scss/chatbox.css"> -->
     <link rel="shortcut icon" href="{{ url('') }}{{ !$config ? '' : $config->logo_favicon }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" />
@@ -8541,24 +8541,6 @@ audio, canvas, embed, iframe, img, object, svg, video {
 .pt-5x {
     padding-top: .5rem !important;
 }
-.wa-sticky-btn {
-    background-image: url('{{ url('') }}{{ !$config ? '' : $config->logo_cs }}');
-    background-size: cover;
-    border: none;
-    border-radius: 25px;
-    bottom: 42px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 24px; /* Increased from 18px to 24px */
-    height: 120px;   /* Increased from 100px to 120px */
-    outline: none;
-    padding: 10px 20px; /* Increased padding */
-    position: fixed;
-    right: 16px;
-    width: 120px;    /* Increased from 80px to 100px */
-    z-index: 99;
-}
-
 
 @media screen and (max-device-width: 480px) {
     .wa-sticky-btn {

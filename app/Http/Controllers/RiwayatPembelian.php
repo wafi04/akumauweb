@@ -14,8 +14,6 @@ class RiwayatPembelian extends Controller
         $data = Pembelian::where('username', Auth::user()->username)->orderBy('created_at', 'desc')->get();
 
         return view('components.riwayat', ['data' => $data]);
-        
-        // return view('components.riwayat', ['data' => Pembelian::where('username', Auth::user()->username)->paginate(10)]);
     }
 
 

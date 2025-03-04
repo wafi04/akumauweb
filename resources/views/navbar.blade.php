@@ -4,24 +4,13 @@
         style="background: #00000000">
             <div class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-[3.2rem]">
                 <div class="relative flex h-16 items-center justify-between">
-                    <div class="absolute inset-y-0 left-0 flex items-center">
-                        <button class="rounded-md p-2 navbar-toggler border-0 bg-bg-color" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" aria-hidden="true" class="block h-6 w-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                            </svg>
-                        </button>
-
-                    </div>
-
+                    
                     <!-- Show Daftar / Masuk -->
                     <div class="flex flex-1 items-center sm:items-center sm:justify-start ml-12 gap-4">
                         <div class="flex flex-shrink-0 items-center">
                             <a class="relative w-auto" href="{{ url('') }}">
-                                <img alt="logo" srcset="{{ url('') }}{{ !$config ? '' : $config->logo_header }}"
-                                    src="{{ url('') }}{{ !$config ? '' : $config->logo_header }}" width="50" height="50"
+                                <img alt="logo" 
+                                    src="https://res.cloudinary.com/dazayhg7s/image/upload/v1740910059/LOGOVZ_p9pmwj.png"
                                     decoding="async" data-nimg="1" class="block h-10 w-auto" loading="lazy"
                                     style="color: transparent;" />
                             </a>
@@ -71,10 +60,9 @@
                                     >
                                 <div class="relative h-8 w-8">
                                 <img
-                                    alt=""
+                                    alt="logo navbar"
                                     sizes="100vw"
-                                    srcset="{{ url('') }}{{ !$config ? '' : $config->logo_favicon }}"
-                                    src=""
+                                    src="https://res.cloudinary.com/dazayhg7s/image/upload/v1740910059/LOGOVZ_p9pmwj.png"
                                     decoding="async"
                                     data-nimg="fill"
                                     class="rounded-full ring-1 ring-white"
@@ -130,8 +118,7 @@
                                         data-headlessui-state="1">
                                         <div class="text-center mt-4">
                                             <img alt="mbgs-logo-"
-                                                srcset="{{ URL('') }}{{ !$config ? '' : $config->logo_header }}"
-                                               src="{{ URL('') }}{{ !$config ? '' : $config->logo_header }}"
+                                               src="https://res.cloudinary.com/dazayhg7s/image/upload/v1740910059/LOGOVZ_p9pmwj.png"
                                                width="150" height="150" decoding="async" data-nimg="1" class="mx-auto"
                                                 loading="lazy" style="color: transparent;" />
                                             <p class="text-md font-normal mt-2">Masuk atau Daftar?</p>
@@ -154,7 +141,6 @@
 
         </nav>
     </header>
-    <!-- End Show Daftar / Masuk -->
 
 
 

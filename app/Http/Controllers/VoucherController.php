@@ -47,6 +47,8 @@ class VoucherController extends Controller
         ]);
         
         $voucher = Voucher::where('kode', $request->voucher)->first();
+
+        
         
         if(!$voucher) return response()->json(['status' => false, 'message' => 'Voucher tidak ditemukan'], 404);
         if($voucher->stock == 0) return response()->json(['status' => false, 'message' => 'Voucher sudah tidak valid'], 404);

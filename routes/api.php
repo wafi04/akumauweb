@@ -20,6 +20,9 @@ Route::post('/order',             [App\Http\Controllers\Api\OrderController::cla
 Route::post('/status',             [App\Http\Controllers\Api\StatusController::class, 'show']);
 Route::post('/service',             [App\Http\Controllers\Api\ServiceController::class, 'show']);
 Route::post('/saldo',             [App\Http\Controllers\Api\SaldoController::class, 'show']);
+
+Route::get('/search', [App\Http\Controllers\Api\HomeController::class, 'searchCategories']);
+Route::get('/home', [App\Http\Controllers\Api\HomeController::class, 'getHomeData']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

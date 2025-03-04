@@ -19,8 +19,8 @@ class LoginController extends Controller
     }
     
 
-   public function store(Request $request)
-{
+    public function store(Request $request)
+    {
     $credential = $request->validate([
         'username' => 'required',
         'password' => 'required'
@@ -34,7 +34,7 @@ class LoginController extends Controller
             return redirect()->intended('dashboard');
         }
 
-        return back()->with('error', 'Mohon periksa kembali Username dan Password Anda. Kami tidak dapat menemukan akun Anda.');
+        return back()->with('error', 'Username  dan Password invalid');
     }
 
     public function destroy(Request $request)

@@ -13,15 +13,9 @@ use App\Models\Voucher;
 use App\Models\Pembelian;
 use App\Models\User;
 use App\Models\Berita;
-use App\Models\Method;
-use App\Http\Controllers\DuniaGames;
-use App\Http\Controllers\ApiBoController;
 use Illuminate\Support\Str;
-use App\Http\Controllers\TriPayController;
 use App\Http\Controllers\digiFlazzController;
-use App\Http\Controllers\iPaymuController;
 use App\Http\Controllers\VipResellerController;
-use App\Http\Controllers\JulyhyusController;
 use App\Http\Controllers\DuitkuController;
 use App\Http\Controllers\MooGold;
 use App\Http\Controllers\ApiCheckController;
@@ -41,7 +35,6 @@ class OrderController extends Controller
         ->select('nama','sub_nama', 'server_id', 'thumbnail', 'id', 'kode', 'tipe', 'petunjuk', 'bannerlayanan', 'ket_layanan', 'ket_id', 'placeholder_1', 'placeholder_2')
         ->first();
     
-    // Check if data exists early in the function
     if($data == null) {
         return back()->with('error', 'Kategori tidak ditemukan');
     }
@@ -61,7 +54,6 @@ class OrderController extends Controller
     $arraySubCategory = collect($getSubCategory)->toArray();
     array_push($arraySubCategory, $normalSubCategory);
     
-    // Check if there are available services
     if(Auth::check()){
         if(Auth::user()->role == "Member"){
             $layanan = Layanan::where('kategori_id', $data->id)
@@ -75,12 +67,6 @@ class OrderController extends Controller
                 ->select('id', 'sub_category_id', 'layanan','product_logo', 'harga_platinum AS harga', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')
                 ->orderBy('harga', 'asc')
                 ->get();
-        } else if(Auth::user()->role == "Gold"){
-            $layanan = Layanan::where('kategori_id', $data->id)
-                ->where('status', 'available')
-                ->select('id', 'sub_category_id', 'layanan','product_logo', 'harga_gold AS harga', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')
-                ->orderBy('harga', 'asc')
-                ->get();
         }
     } else {
         $layanan = Layanan::where('kategori_id', $data->id)
@@ -90,7 +76,6 @@ class OrderController extends Controller
             ->get();
     }
     
-    // Check if any services are available
     if($layanan->isEmpty()) {
         return back()->with('error', 'Tidak ada layanan tersedia untuk kategori ini');
     }
@@ -120,8 +105,6 @@ class OrderController extends Controller
                 $data = Layanan::where('id', $request->nominal)->select('harga_reseller AS harga', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->first();    
             }else if(Auth::user()->role == "Platinum" || Auth::user()->role == "Admin"){
                 $data = Layanan::where('id', $request->nominal)->select('harga_platinum AS harga', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->first();
-            }else if(Auth::user()->role == "Gold"){
-                $data = Layanan::where('id', $request->nominal)->select('harga_gold AS harga', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->first();    
             }
         }else{
             $data = Layanan::where('id', $request->nominal)->select('harga AS harga', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->first();
@@ -152,7 +135,6 @@ class OrderController extends Controller
             }
             
         }
-
         return response()->json([
             'status' => true,
             'harga' => "Rp. ".number_format($data->harga, 0, '.', ',')
@@ -203,20 +185,18 @@ class OrderController extends Controller
         
         }
             
-            $item = Layanan::where('id',$request->service)->first();
+        $item = Layanan::where('id',$request->service)->first();
            
-           $produk = Kategori::where('id',$item->kategori_id)->first();
+        $produk = Kategori::where('id',$item->kategori_id)->first();
 
             $apicheck = new ApiCheckController();
             
-            if(Auth::user()){
+        if(Auth::user()){
             if(Auth::user()->role =="Member"){
                 $dataLayanan = Layanan::where('id', $request->service)->select('harga_reseller AS harga', 'kategori_id', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->first();
             }else if(Auth::user()->role =="Platinum" || Auth::user()->role == "Admin"){
                 $dataLayanan = Layanan::where('id', $request->service)->select('harga_platinum AS harga', 'kategori_id', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->first();
-            }else if(Auth::user()->role =="Gold"){
-                $dataLayanan = Layanan::where('id', $request->service)->select('harga_gold AS harga', 'kategori_id', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->first();
-                }
+            }
             }else{
                 $dataLayanan = Layanan::where('id', $request->service)->select('harga', 'kategori_id', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale')->first();
             }
@@ -226,25 +206,31 @@ class OrderController extends Controller
                 $dataLayanan->harga = $dataLayanan->harga_flash_sale;
                 
             }
-
-            if(isset($request->voucher)){
-                $voucher = Voucher::where('kode', $request->voucher)->first();
+            if (isset($request->voucher) && !empty($request->voucher)) {
+                // Use Laravel's validation to sanitize the input
+                $validatedData = $request->validate([
+                    'voucher' => 'string|max:50', // adjust max length as needed
+                ]);
                 
-                if(!$voucher){
-                    $dataLayanan->harga = $dataLayanan->harga;
-                }else{
-                    if($voucher->stock == 0){
-                        $dataLayanan->harga = $dataLayanan->harga;
-                    }else{
-                        $potongan = $dataLayanan->harga * ($voucher->promo / 100);
-                        if($potongan > $voucher->max_potongan){
-                            $potongan = $voucher->max_potongan;
-                        }
-                        
-                        $dataLayanan->harga = $dataLayanan->harga - $potongan;
+                // Use the validated data
+                $voucher = Voucher::where('kode', $validatedData['voucher'])->first();
+                
+                if ($voucher && $voucher->stock > 0) {
+                    // Calculate discount
+                    $potongan = $dataLayanan->harga * ($voucher->promo / 100);
+                    
+                    // Apply maximum discount cap if needed
+                    if ($potongan > $voucher->max_potongan) {
+                        $potongan = $voucher->max_potongan;
                     }
+                    
+                    // Apply the discount
+                    $dataLayanan->harga -= $potongan;
+                    
+                    // Optionally, update voucher stock
+                    // $voucher->decrement('stock');
                 }
-                
+                // No else needed as $dataLayanan->harga remains unchanged
             }
 
             $dataKategori = Kategori::where('id', $dataLayanan->kategori_id)->select('kode','tipe')->first();
@@ -509,7 +495,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         
-            $blockedUserIds = [1416386498]; // Add blocked user IDs here
+            $blockedUserIds = [1416386498];
     if (in_array($request->uid, $blockedUserIds)) {
         return response()->json([
             'status' => false,
@@ -553,19 +539,6 @@ class OrderController extends Controller
                 
             ]);
         
-        }else if($request->ktg_tipe == 'dm_vilog'){
-            
-            $request->validate([
-                'email_vilog' => 'required',
-                'password_vilog' => 'required',
-                'loginvia_vilog' => 'required',
-                'service' => 'required|numeric',
-                'payment_method' => 'required',
-                'nomor' => 'required|numeric',
-                
-            ]);
-            
-            
         }else{
         
              $request->validate([
@@ -584,9 +557,7 @@ class OrderController extends Controller
                 $dataLayanan = Layanan::where('id', $request->service)->select('layanan', 'harga_reseller AS harga', 'kategori_id', 'provider_id', 'provider', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale', 'profit_reseller AS profit')->first();
             }else if(Auth::user()->role =="Platinum" || Auth::user()->role == "Admin"){
                 $dataLayanan = Layanan::where('id', $request->service)->select('layanan', 'harga_platinum AS harga', 'kategori_id', 'provider_id', 'provider', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale', 'profit_reseller AS profit')->first();
-            }else if(Auth::user()->role =="Gold"){
-                $dataLayanan = Layanan::where('id', $request->service)->select('layanan', 'harga_gold AS harga', 'kategori_id', 'provider_id', 'provider', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale', 'profit_reseller AS profit')->first();
-                }
+            }
             }else{
                 $dataLayanan = Layanan::where('id', $request->service)->select('layanan', 'harga', 'kategori_id', 'provider_id', 'provider', 'is_flash_sale', 'expired_flash_sale', 'harga_flash_sale', 'profit_reseller AS profit')->first();
             }
@@ -617,12 +588,11 @@ class OrderController extends Controller
             }
         }  
 
-         $kategori = Kategori::where('id', $dataLayanan->kategori_id)->select('kode')->first();
+        $kategori = Kategori::where('id', $dataLayanan->kategori_id)->select('kode')->first();
 
         $unik = date('Hs');
         $kode_unik = substr(str_shuffle(1234567890),0,3);
         $order_id = 'VA'.$unik.$kode_unik.'ZZ';
-        $tripay = new TriPayController();  
       
 
         $rand = rand(1,1000);
@@ -654,7 +624,6 @@ class OrderController extends Controller
             
             $duitku = new DuitkuController;
             $tripayres = $duitku->request($dataLayanan->harga, $request->payment_method, $order_id, $request->nomor, $order_id.'@gmail.com');
-            // $tripayres = $tripay->request($order_id, $dataLayanan->harga, $request->payment_method, $order_id.'@email.com', $request->nomor);
             
             if(!$tripayres['success']) return response()->json(['status' => false, 'data' => $tripayres['message']]);
             
@@ -711,8 +680,6 @@ class OrderController extends Controller
         
         if($request->ktg_tipe == 'joki'){
             $tipe = 'joki';
-        }else if($request->ktg_tipe == 'dm_vilog'){
-            $tipe = 'dm_vilog';
         }else if($request->ktg_tipe == 'gift_skin'){
             $tipe = 'gift_skin';
         }else if($request->ktg_tipe == 'gift_card'){
@@ -779,19 +746,19 @@ class OrderController extends Controller
 
     if ($dataLayanan->provider == "digiflazz") {
         $digi = new digiFlazzController;
-        $provider_order_id = Str::uuid()->toString(); // Menggunakan UUID
+        $provider_order_id = Str::uuid()->toString(); 
         $order = $digi->order($request->uid, $request->zone, $dataLayanan->provider_id, $provider_order_id);
 
         $order['status'] = ($order['data']['status'] == "Pending" || $order['data']['status'] == "Sukses");
     } else if($dataLayanan->provider == "moo") {
         $moo = new MooGold;
-        $provider_order_id = Str::uuid()->toString(); // Menggunakan UUID
+        $provider_order_id = Str::uuid()->toString(); 
         $order = $moo->order($request->uid, $request->zone, $dataLayanan->provider_id, $provider_order_id);
     } else if($dataLayanan->provider == "moomix") {
         $moomix = new MooGold;
         $provider_ids = explode('|', $dataLayanan->provider_id);
 
-        $provider_order_id = Str::uuid()->toString(); // Menggunakan UUID
+        $provider_order_id = Str::uuid()->toString(); 
 
         $order1 = $moomix->order($request->uid, $request->zone, $provider_ids[0], $provider_order_id);
         $order2 = $moomix->order($request->uid, $request->zone, $provider_ids[1], $provider_order_id);
@@ -807,7 +774,7 @@ class OrderController extends Controller
         $order['status'] = '';
 
         foreach($providers_id as $pi) {
-            $provider_order_id = Str::uuid()->toString(); // Menggunakan UUID
+            $provider_order_id = Str::uuid()->toString(); 
             $order = $digi->order($request->uid, $request->zone, $pi, $provider_order_id);
             $order['status'] = ($order['data']['status'] == "Pending" || $order['data']['status'] == "Sukses");
         }
@@ -822,7 +789,7 @@ class OrderController extends Controller
         $provider_order_id = !$order['error'] ? $order['data']['invoiceNumber'] : '';
         $order['status'] = !$order['error'];
     } else if($dataLayanan->provider == "apigames") {
-        $provider_order_id = Str::uuid()->toString(); // Menggunakan UUID
+        $provider_order_id = Str::uuid()->toString(); 
         $apigames = new ApiGamesController;
         $order = $apigames->order($request->uid, $request->zone, $dataLayanan->provider_id, $provider_order_id);
         $order['status'] = $order['data']['status'] == "Sukses";
@@ -836,7 +803,7 @@ class OrderController extends Controller
         $order['status'] = '';
 
         foreach ($providers_id as $pi) {
-            $provider_order_id = Str::uuid()->toString(); // Menggunakan UUID
+            $provider_order_id = Str::uuid()->toString(); 
             $order = $gp->order($order_id, $pi, $request->uid, $request->zone);
             $order['status'] = $order['status'] ? true : false;
             if ($order['status'] && isset($order['transactionId'])) {
@@ -857,7 +824,7 @@ class OrderController extends Controller
         $order['status'] = $order['status'];
     } else if($dataLayanan->provider == "jsgmix") {
         $js = new JstoreController();
-        $provider_order_id = Str::uuid()->toString(); // Menggunakan UUID
+        $provider_order_id = Str::uuid()->toString(); 
         $providers_id = explode(',', $dataLayanan->provider_id);
         $order['status'] = '';
 
@@ -881,10 +848,7 @@ class OrderController extends Controller
     } else if($dataLayanan->provider == "manual") {
         $provider_order_id = $order_id;
         $order['status'] = true;
-    } else if($dataLayanan->provider == "dm_vilog") {
-        $provider_order_id = '';
-        $order['status'] = true;
-    } else if($dataLayanan->provider == "gift_card") {
+    }  else if($dataLayanan->provider == "gift_card") {
         $provider_order_id = '';
         $order['status'] = true;
     } else if($dataLayanan->provider == "gift_skin") {
@@ -928,11 +892,7 @@ class OrderController extends Controller
                 $pembelian->tipe_transaksi = $tipe;
                 
                 
-                 if($tipe == 'dm_vilog'){
-                    $pembelian->email_vilog = $request->email_vilog;
-                    $pembelian->password_vilog = $request->password_vilog;
-                    $pembelian->loginvia_vilog = $request->loginvia_vilog;
-                }
+     
                 
                 $pembelian->save();
                 
@@ -995,8 +955,8 @@ class OrderController extends Controller
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => array(
-            'target' => $nomor . '|Fonnte|Admin', // Adjusted to use $nomor directly
-            'message' => $msg, // Adjusted to use $msg directly
+            'target' => $nomor . '|Fonnte|Admin', 
+            'message' => $msg,
         ),
         CURLOPT_HTTPHEADER => array(
             'Authorization: '.$api->wa_key

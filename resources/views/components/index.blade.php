@@ -438,7 +438,7 @@
             overflow: hidden;
             -webkit-box-orient: vertical;
             display: -webkit-box;
-            -webkit-line-clamp: 1;
+            -line-clamp: 1;
             text-overflow: ellipsis;
         }
 
@@ -2460,16 +2460,16 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                         @php $active = ($i == 1) ? 'active' : ''; @endphp
                         <div class="swiper-slide" data-swiper-slide-index="{{ $i-1 }}" role="group" aria-label="{{ $i }} / {{ count($banner) }}">
                           <img src="{{ $data->path }}" alt="" class="d-block w-100 akumauweb-rounded-kecil">
-                          <div class="swiper-slide-shadow-left" style="opacity: 2; transition-duration: 300ms;"></div>
-                          <div class="swiper-slide-shadow-right" style="opacity: 0; transition-duration: 300ms;"></div>
+                         
                         </div>
                         @php $i++; @endphp 
                         @endforeach
                     </div>
-                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                 </div>
             </div>
-        <div class="absolute inset-0" style=" background-color: rgba(0, 0, 0, 0.5); z-index:-1;"><img alt="" fetchpriority="high" decoding="async" data-nimg="fill" class="object-cover object-center" src="{{ url('') }}{{ !$config ? '' : $config->logo_banner }}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"></div>
+        <div class="absolute inset-0" style=" background-color: rgba(0, 0, 0, 0.5); z-index:-1;">
+        <img alt=""  decoding="async" data-nimg="fill" class="object-cover object-center" src="https://res.cloudinary.com/dazayhg7s/image/upload/v1741005493/POSTER_HEADER_WEB_VAZZ_UNIVERSE_3_cr0lhi.png" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+        </div>
 
 
 <div class="col-lg-11 mx-jsgx mt-4">
@@ -2543,10 +2543,9 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                                                         </div>
 
                                                     </div>
-                                                    <!---->
+                                                    
                                                 </div>
-                                                <!---->
-                                                <!---->
+                                             
                                             </div>
                                         </div>
                                     </app-count-down>
@@ -2568,8 +2567,7 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                                     src="/assets/fs.gif" 
                                     style="color: transparent; margin-top: -20px;">
                                     </figure>
-                                <!-- Countdown Timer -->
-                                <!-- End Countdown Timer -->
+                           
                             </div>
                         </div>
                     </a>
@@ -2603,35 +2601,14 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
     </div>
     @endif               --> 
                     
-                    
-                    
-<!--
-                      <div class="row mb-4 mt-4">
-                               <div class="col-12 grid-margin stretch-card">
-                                   <div class="bg-gradient card bg-cardy corona-gradient-card">
-                                       <div class="card-body py-2 px-2 px-sm-3">
-                                           <div class="row align-items-center">
-                                               <div class="col-2">
-                                                   <img src="/cdn/image/jsggif.gif" class="gradient-corona-img img-x" alt="">
-                                               </div>
-                                               <div class="col-4">
-                                                   <marquee width="250%" direction="left">
-                                                       <span class="mb-0 font-weight-normal"><strong>Selamat Berbelanja</strong> |</span>
-                                                       <span class="font-weight-normal">Semoga harimu Menyenangkan |</span>&nbsp; <span class="mb-0 font-weight-normal">Thank you for your kind attention! </span>
-                                                   </marquee>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div> -->
+         
 
 
 
 
 
 <div class="col-lg-11 mx-jsg mt-4">
-    <h3 class="mb-3 text-lgh font-semibold uppercase leading-relaxed tracking-wider">🔥 <!-- -->Populer</h3>
+    <h3 class="mb-3 text-lgh font-semibold uppercase leading-relaxed tracking-wider">ðŸ”¥ <!-- -->Populer</h3>
     <div class="grid grid-cols-2 gap-2 md:gap-4 lg:grid-cols-3">
     @foreach($kategori as $jsgori)@if($jsgori->tipe == "populer")    <a tabindex="0" href="{{ env('APP_URL').'/order/'.$jsgori->kode }}" style="outline: none;">
             <div class="bg-title-product flex items-center gap-x-1.5 rounded-xl bg-murky-600 p-1.5 duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-murky-800 md:gap-x-3 md:rounded-2xl md:p-3 bg-murky-800">
@@ -2639,24 +2616,11 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                 <div class="relative flex w-full flex-col">
                     <h2 class="w-[100px] truncate text-xxs font-semibold text-murky-200 sm:w-[200px] md:w-[275px] md:text-base">{{ $jsgori->nama }}</h2>
                     <p class="text-xxs text-murky-300 md:text-sm">{{ $jsgori->sub_nama }}</p></div></div></a>@endif @endforeach</div></div>
-
-
-
-
-            
-            
                 <div class="row border-bottom-jsg h-100 mt-4">
                     <div class="col-sm-11">
                         <ul class="nav nav-pills justify-content-left akumauweb-scroll flex space-x-3 overflow-auto"
                             id="myTab" role="tablist">
-                          <!--  <li class="nav-item me-1 nav-tab" role="presentation">
-                                <button
-                                    class="btn-category nav-link text-lg flex whitespace-nowrap border-b-2 py-2 px-3 outline-none border-primary-500 bg-gradient-to-t from-murky-700 to-murky-800 active"
-                                    id="populer-tab" data-bs-toggle="tab" data-bs-target="#populer" type="button"
-                                    role="tab" aria-controls="populer" aria-selected="true">
-                                    <small>Populer</small>
-                                </button>
-                            </li> -->
+                         
                            <li class="nav-item me-1 nav-tab" role="presentation">
                                 <button
                                     class="btn-category nav-link text-lgx flex whitespace-nowrap border-b-2 py-2 px-3 outline-none border-primary-500 bg-gradient-to-t from-murky-700 to-murky-800 active"
@@ -2665,14 +2629,7 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                                     <small>Game Lainnya</small>
                                 </button>
                             </li>
-                        <!--    <li class="nav-item me-1 nav-tab" role="presentation">
-                                <button
-                                    class="btn-category nav-link text-lgx flex whitespace-nowrap border-b-2 py-2 px-3 outline-none border-primary-500 bg-gradient-to-t from-murky-700 to-murky-800"
-                                    id="vilog-tab" data-bs-toggle="tab" data-bs-target="#vilog" type="button"
-                                    role="tab" aria-controls="vilog" aria-selected="true">
-                                    <small>Via Login</small>
-                                </button>
-                            </li> -->
+                        
                             <li class="nav-item me-1 nav-tab" role="presentation">
                                 <button
                                     class="btn-category nav-link text-lgx flex whitespace-nowrap border-b-2 py-2 px-3 outline-none border-primary-500 bg-gradient-to-t from-murky-700 to-murky-800"
@@ -2797,9 +2754,9 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                                    <div class="bg-gradient card bg-cardy corona-gradient-card">
                                        <div class="card-body py-2 px-2 px-sm-3">
                                            <div class="row align-items-center">
-                                               <div class="col-2">
+                                               /* <div class="col-2">
                                                    <img src="/cdn/image/jsggif.gif" style="height:50px;" class="gradient-corona-img img-x" alt="">
-                                               </div>
+                                               </div> */
                                                <div class="col-4">
                                                    <marquee width="250%" direction="left">
                                                        <span class="mb-0 font-weight-normal"><strong>Selamat Berbelanja</strong> |</span>
@@ -2815,7 +2772,7 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
             
 <div class="row d-none d-lg-block" style="padding-top: 0rem !important;">
 <div class="col-lg-11 mx-auto mt-4">
-    <h3 class="mb-3 text-lgh font-semibold uppercase leading-relaxed tracking-wider">🔥 <!-- -->Populer</h3>
+    <h3 class="mb-3 text-lgh font-semibold uppercase leading-relaxed tracking-wider">ðŸ”¥ <!-- -->Populer</h3>
     <div class="grid grid-cols-2 gap-2 md:gap-4 lg:grid-cols-3">
     @foreach($kategori as $jsgori)@if($jsgori->tipe == "populer")    <a tabindex="0" href="{{ env('APP_URL').'/order/'.$jsgori->kode }}" style="outline: none;">
             <div class="bg-title-product flex items-center gap-x-1.5 rounded-xl bg-murky-600 p-1.5 duration-300 ease-in-out hover:shadow-2xl hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 hover:ring-offset-murky-800 md:gap-x-3 md:rounded-2xl md:p-3 bg-murky-800">
@@ -2976,114 +2933,45 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
         
           <div class="col-lg-11 mx-auto mt-4">
                   <div class="tab-content" id="myTabContent">
-                <!--    <div class="tab-pane active" id="populer" role="tabpanel" aria-labelledby="populer-tab">
-                        <div
-                            class="mt-2 md:mt-10 grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-3 lg:grid-cols-6 lg:gap-3 xl:grid-cols-6 xl:gap-5">@foreach($kategori as $jsgori)@if($jsgori->tipe == "populer") 
-                            <a href="{{ env('APP_URL').'/order/'.$jsgori->kode }}"
-                                class="featured-game-card relative hover:shadow-sm hover:cursor-pointer  group relative overflow-hidden rounded-2xl  hover:ring-primary-500 duration-300  hover:shadow-2xl hover:ring-2   hover:ring-offset-white-500">
-                                <div class="blur-sharp ">
-                                    <div
-                                        class="relative h-[9.4rem] sm:h-[14.4rem] md:h-[14.4rem] lg:h-[10.4rem] xl:w-auto ">
-                                        <img alt="{{ $jsgori->nama }}" sizes="100vw" srcset="{{ url('') }}{{ $jsgori->thumbnail }}"
-                                            src="{{ url('') }}{{ $jsgori->thumbnail }}" decoding="async" data-nimg="fill"
-                                            class="object-cover object-center !hover:rounded-3xl" loading="lazy"
-                                            style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                    </div>
-                                </div>
-                                <div class="cover !absolute bottom-0 m-3 h-full">
-                                    <div class="flex flex-col h-full justify-between no-underline">
-                                        <div class="relative p-3 mx-auto my-auto h-15 w-10 lg:h-14 lg:w-14">
-                                            <img alt="icon-mbgs" sizes="100vw"
-                                                srcset="{{ url('') }}{{ !$config ? '' : $config->og_image }}"
-                                                src="{{ url('') }}{{ !$config ? '' : $config->og_image }}" decoding="async"
-                                                data-nimg="fill" class="object-center object-cover" loading="lazy"
-                                                style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent; filter: brightness(0) invert(1);">
-                                        </div>
-                                        <div>
-                                            <p
-                                                class="font-semibold text-white text-[12px] lg:text-[16px] mb-1 line-clamp-2">
-                                                {{ $jsgori->nama }}</p>
-                                            <p class="font-light text-[10px] lg:text-[14px] text-white line-clamp-2">
-                                                {{ $jsgori->sub_nama }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>@endif @endforeach
-                        </div>
-                    </div> -->
-
-
-                    <div class="tab-pane active" id="gamelainnya" role="tabpanel" aria-labelledby="gamelainnya-tab">
-                        <div
-                            class="mt-2 md:mt-10 grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-3 lg:grid-cols-6 lg:gap-3 xl:grid-cols-6 xl:gap-5">
-                            @foreach($kategori as $jsgori)@if($jsgori->tipe == "gamelainnya") <a href="{{ env('APP_URL').'/order/'.$jsgori->kode }}"
-                                class="featured-game-card relative hover:shadow-sm hover:cursor-pointer  group relative overflow-hidden rounded-2xl  hover:ring-primary-500 duration-300  hover:shadow-2xl hover:ring-2   hover:ring-offset-white-500">
-                                <div class="blur-sharp ">
-                                    <div
-                                        class="relative h-[9.4rem] sm:h-[14.4rem] md:h-[14.4rem] lg:h-[10.4rem] xl:w-auto ">
-                                        <img alt="{{ $jsgori->nama }}" sizes="100vw" srcset="{{ url('') }}{{ $jsgori->thumbnail }}"
-                                            src="{{ url('') }}{{ $jsgori->thumbnail }}" decoding="async" data-nimg="fill"
-                                            class="object-cover object-center !hover:rounded-3xl" loading="lazy"
-                                            style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                    </div>
-                                </div>
-                                <div class="cover !absolute bottom-0 m-3 h-full">
-                                    <div class="flex flex-col h-full justify-between no-underline">
-                                        <div class="relative p-3 mx-auto my-auto h-15 w-10 lg:h-14 lg:w-14">
-                                            <img alt="icon-mbgs" sizes="100vw"
-                                                srcset="{{ url('') }}{{ !$config ? '' : $config->og_image }}"
-                                                src="{{ url('') }}{{ !$config ? '' : $config->og_image }}" decoding="async"
-                                                data-nimg="fill" class="object-center object-cover" loading="lazy"
-                                                style="position: absolute; height: 200%; width: 200%; inset: 0px; color: transparent; top: -70%; filter: brightness(0) invert(1);">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-titlexx text-truncatexx text-whitexx">
-                        {{ $jsgori->nama }}<br>
-                         <font color="#ADAAAA" style="font-weight:normal">{{ $jsgori->sub_nama }}</font>
-                     </div>
-                            </a>@endif @endforeach
+            
+            <div class="tab-pane active" id="gamelainnya" role="tabpanel" aria-labelledby="gamelainnya-tab">
+    <div class="mt-2 md:mt-10 grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-3 lg:grid-cols-6 lg:gap-3 xl:grid-cols-6 xl:gap-5">
+        @foreach($kategori as $jsgori)
+            <a href="{{ env('APP_URL').'/order/'.$jsgori->kode }}" 
+                class="featured-game-card relative hover:shadow-sm hover:cursor-pointer group relative overflow-hidden rounded-2xl hover:ring-primary-500 duration-300 hover:shadow-2xl hover:ring-2 hover:ring-offset-white-500">
+                <div class="blur-sharp">
+                    <div class="relative h-[9.4rem] sm:h-[14.4rem] md:h-[14.4rem] lg:h-[10.4rem] xl:w-auto">
+                        <img alt="{{ $jsgori->nama }}" sizes="100vw" srcset="{{ $jsgori->thumbnail }}" 
+                            src="{{ $jsgori->thumbnail }}" decoding="async" data-nimg="fill" 
+                            class="object-cover object-center !hover:rounded-3xl" loading="lazy" 
+                            style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                    </div>
+                </div>
+                <div class="cover !absolute bottom-0 m-3 h-full">
+                    <div class="flex flex-col h-full justify-between no-underline">
+                        <div class="relative p-3 mx-auto my-auto h-15 w-10 lg:h-14 lg:w-14">
+                            <img alt="icon-{{ $jsgori->nama }}" sizes="100vw" 
+                                srcset="{{ $jsgori->thumbnail }}" 
+                                src="{{ $jsgori->thumbnail }}" decoding="async" 
+                                data-nimg="fill" class="object-center object-cover" loading="lazy" 
+                                style="position: absolute; height: 200%; width: 200%; inset: 0px; color: transparent; top: -70%; filter: brightness(0) invert(1);">
                         </div>
                     </div>
-                    
-         <!--           <div class="tab-pane" id="vilog" role="tabpanel" aria-labelledby="vilog-tab">
-                        <div
-                            class="mt-2 md:mt-10 grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-3 lg:grid-cols-6 lg:gap-3 xl:grid-cols-6 xl:gap-5">
-                            @foreach($kategori as $jsgori)@if($jsgori->tipe == "dm_vilog") <a href="{{ env('APP_URL').'/order/'.$jsgori->kode }}"
-                                class="featured-game-card relative hover:shadow-sm hover:cursor-pointer  group relative overflow-hidden rounded-2xl  hover:ring-primary-500 duration-300  hover:shadow-2xl hover:ring-2   hover:ring-offset-white-500">
-                                <div class="blur-sharp ">
-                                    <div
-                                        class="relative h-[9.4rem] sm:h-[14.4rem] md:h-[14.4rem] lg:h-[10.4rem] xl:w-auto ">
-                                        <img alt="{{ $jsgori->nama }}" sizes="100vw" srcset="{{ url('') }}{{ $jsgori->thumbnail }}"
-                                            src="{{ url('') }}{{ $jsgori->thumbnail }}" decoding="async" data-nimg="fill"
-                                            class="object-cover object-center !hover:rounded-3xl" loading="lazy"
-                                            style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                    </div>
-                                </div>
-                                <div class="cover !absolute bottom-0 m-3 h-full">
-                                    <div class="flex flex-col h-full justify-between no-underline">
-                                        <div class="relative p-3 mx-auto my-auto h-15 w-10 lg:h-14 lg:w-14">
-                                            <img alt="icon-mbgs" sizes="100vw"
-                                                srcset="{{ url('') }}{{ !$config ? '' : $config->og_image }}"
-                                                src="{{ url('') }}{{ !$config ? '' : $config->og_image }}" decoding="async"
-                                                data-nimg="fill" class="object-center object-cover" loading="lazy"
-                                                style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent; filter: brightness(0) invert(1);">
-                                        </div>
-                                        <div>
-                                            <p
-                                                class="font-semibold text-white text-[12px] lg:text-[16px] mb-1 line-clamp-2">
-                                                {{ $jsgori->nama }}</p>
-                                            <p class="font-light text-[10px] lg:text-[14px] text-white line-clamp-2">
-                                                {{ $jsgori->sub_nama }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>@endif @endforeach
-                        </div>
-                    </div> -->
-                    
+                </div>
+                <div class="card-titlexx text-truncatexx text-whitexx">
+                    {{ $jsgori->nama }}<br>
+                    <font color="#ADAAAA" style="font-weight:normal">{{ $jsgori->sub_nama }}</font>
+                </div>
+            </a>
+        @endforeach
+    </div>
+    
+    <!-- Pagination Links -->
+    <div class="mt-6 flex justify-center">
+        {{ $kategori->links() }}
+    </div>
+</div>
+      
                     <div class="tab-pane" id="Pulsa" role="tabpanel" aria-labelledby="Pulsa-tab">
                         <div
                             class="mt-2 md:mt-10 grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-3 lg:grid-cols-6 lg:gap-3 xl:grid-cols-6 xl:gap-5">
@@ -3102,8 +2990,8 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                                     <div class="flex flex-col h-full justify-between no-underline">
                                         <div class="relative p-3 mx-auto my-auto h-15 w-10 lg:h-14 lg:w-14">
                                             <img alt="icon-mbgs" sizes="100vw"
-                                                srcset="{{ url('') }}{{ !$config ? '' : $config->og_image }}"
-                                                src="{{ url('') }}{{ !$config ? '' : $config->og_image }}" decoding="async"
+                                                srcset="https://res.cloudinary.com/dazayhg7s/image/upload/v1741012778/unnamed_1_ogkfjg.png"
+                                                src="https://res.cloudinary.com/dazayhg7s/image/upload/v1741012778/unnamed_1_ogkfjg.png" decoding="async"
                                                 data-nimg="fill" class="object-center object-cover" loading="lazy"
                                                 style="position: absolute; height: 200%; width: 200%; inset: 0px; color: transparent; top: -70%; filter: brightness(0) invert(1);">
                                         </div>
@@ -3135,8 +3023,8 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                                     <div class="flex flex-col h-full justify-between no-underline">
                                         <div class="relative p-3 mx-auto my-auto h-15 w-10 lg:h-14 lg:w-14">
                                             <img alt="icon-mbgs" sizes="100vw"
-                                                srcset="{{ url('') }}{{ !$config ? '' : $config->og_image }}"
-                                                src="{{ url('') }}{{ !$config ? '' : $config->og_image }}" decoding="async"
+                                                srcset="{{ url('') }}{{ !$config ? '' : $jsgori->thumbnail }}"
+                                                src="{{ url('') }}{{ !$config ? '' : $jsgori->thumbnail }}" decoding="async"
                                                 data-nimg="fill" class="object-center object-cover" loading="lazy"
                                                 style="position: absolute; height: 200%; width: 200%; inset: 0px; color: transparent; top: -70%; filter: brightness(0) invert(1);">
                                         </div>
@@ -3168,8 +3056,8 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                                     <div class="flex flex-col h-full justify-between no-underline">
                                         <div class="relative p-3 mx-auto my-auto h-15 w-10 lg:h-14 lg:w-14">
                                             <img alt="icon-mbgs" sizes="100vw"
-                                                srcset="{{ url('') }}{{ !$config ? '' : $config->og_image }}"
-                                                src="{{ url('') }}{{ !$config ? '' : $config->og_image }}" decoding="async"
+                                                srcset="{{ url('') }}{{ !$config ? '' : $jsgori->thumbnail }}"
+                                                src="{{ url('') }}{{ !$config ? '' : $jsgori->thumbnail }}" decoding="async"
                                                 data-nimg="fill" class="object-center object-cover" loading="lazy"
                                                 style="position: absolute; height: 200%; width: 200%; inset: 0px; color: transparent; top: -70%; filter: brightness(0) invert(1);">
                                         </div>
@@ -3201,8 +3089,8 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                                     <div class="flex flex-col h-full justify-between no-underline">
                                         <div class="relative p-3 mx-auto my-auto h-15 w-10 lg:h-14 lg:w-14">
                                             <img alt="icon-mbgs" sizes="100vw"
-                                                srcset="{{ url('') }}{{ !$config ? '' : $config->og_image }}"
-                                                src="{{ url('') }}{{ !$config ? '' : $config->og_image }}" decoding="async"
+                                                srcset="{{ url('') }}{{ !$config ? '' : $jsgori->thumbnail }}"
+                                                src="{{ url('') }}{{ !$config ? '' : $jsgori->thumbnail }}" decoding="async"
                                                 data-nimg="fill" class="object-center object-cover" loading="lazy"
                                                 style="position: absolute; height: 200%; width: 200%; inset: 0px; color: transparent; top: -70%; filter: brightness(0) invert(1);">
                                         </div>
@@ -3224,20 +3112,14 @@ transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, b
                             @foreach($kategori as $jsgori)@if($jsgori->tipe == "PLN") <a href="{{ env('APP_URL').'/order/'.$jsgori->kode }}"
                                 class="featured-game-card relative hover:shadow-sm hover:cursor-pointer  group relative overflow-hidden rounded-2xl  hover:ring-primary-500 duration-300  hover:shadow-2xl hover:ring-2   hover:ring-offset-white-500">
                                 <div class="blur-sharp ">
-                                    <div
-                                        class="relative h-[9.4rem] sm:h-[14.4rem] md:h-[14.4rem] lg:h-[10.4rem] xl:w-auto ">
-                                        <img alt="{{ $jsgori->nama }}" sizes="100vw" srcset="{{ url('') }}{{ $jsgori->thumbnail }}"
-                                            src="{{ url('') }}{{ $jsgori->thumbnail }}" decoding="async" data-nimg="fill"
-                                            class="object-cover object-center !hover:rounded-3xl" loading="lazy"
-                                            style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                    </div>
+                                    
                                 </div>
                                 <div class="cover !absolute bottom-0 m-3 h-full">
                                     <div class="flex flex-col h-full justify-between no-underline">
                                         <div class="relative p-3 mx-auto my-auto h-15 w-10 lg:h-14 lg:w-14">
                                             <img alt="icon-mbgs" sizes="100vw"
-                                                srcset="{{ url('') }}{{ !$config ? '' : $config->og_image }}"
-                                                src="{{ url('') }}{{ !$config ? '' : $config->og_image }}" decoding="async"
+                                                srcset="{{ url('') }}{{ !$config ? '' : $jsgori->thumbnail }}"
+                                                src="{{  $jsgori->thumbnail }}" decoding="async"
                                                 data-nimg="fill" class="object-center object-cover" loading="lazy"
                                                 style="position: absolute; height: 200%; width: 200%; inset: 0px; color: transparent; top: -70%; filter: brightness(0) invert(1);">
                                         </div>

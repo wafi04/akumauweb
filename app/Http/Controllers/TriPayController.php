@@ -24,7 +24,7 @@ class TriPayController extends Controller
                     'quantity'    => 1,
                 ]
             ],
-            'expired_time' => (time() + (24 * 60 * 60)), // 24 jam
+            'expired_time' => (time() + (24 * 60 * 60)), 
             'signature'    => hash_hmac('sha256', $api->tripay_merchant_code . $idOrder . $jumlah, $api->tripay_private_key)
         ];
 
@@ -46,16 +46,7 @@ class TriPayController extends Controller
         // dd($response);
         $error = curl_error($curl);
         $paymentNumber = '';
-        // if ($method == "QRISC" || $method == "QRISD" || $method == "QRIS" || $method == "QRISOP") {
-        //     $paymentNumber = $response->data->qr_url;
-        // } else if ($response->data->pay_code == null) {
-        //     $paymentNumber = $response->data->checkout_url;
-        // } else {
-        //     $paymentNumber = $response->data->pay_code;
-        // }
-        // return array('amount' => $response->data->amount, 'no_pembayaran' => $paymentNumber, 'reference' => $response->data->reference);
-        
-        
+      
         if($response->success == true){
             
                 
@@ -68,9 +59,8 @@ class TriPayController extends Controller
                 }else{
                     
                     $paymentNumber = $response->data->pay_url;
-                    
-                }
                 
+                }
                 
             }else{
                 
